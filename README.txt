@@ -1,36 +1,42 @@
-NISHAD ENTERPRISES PWA V5 — FIRST BUILD
-========================================
+NISHAD ENTERPRISES V5 PROFESSIONAL
+===================================
 
-This is the first professional V5 front-end/prototype build.
-
-Included:
-- Customer-facing professional home
-- Services
-- Photo/video gallery
-- Call + WhatsApp buttons
-- Admin login
+Included in this build:
+- Professional dark/blue/teal customer design
+- NE app icon and manifest icon (fixed)
+- Electrical Services
+- Plumbing Services
+- Home Renovation
+- Marine Electrical Services
+- Marine Maintenance Support
+- Lighting & Power
+- Repair & Maintenance
+- Customer Call + WhatsApp buttons
+- Two configured business numbers
+- Customer Get Quote / Enquiry form
+- Admin enquiry inbox + new-enquiry badge
+- Customer photo/video like, comment and share controls
 - Admin media library
-- Quote creator
-- Admin settings
-- Two hidden contact numbers
-- Password change
-- OTP verification UI
-- PWA manifest + service worker
-- New professional NISHAD logo mark
-- Marine service list intentionally excludes:
-  1) Generator Services
-  2) Motor & Starter Services
-  3) Alarm Monitoring Services
+- Admin password and contact-number settings
+- PWA service worker
 
-IMPORTANT:
-This build stores prototype data in the browser (localStorage). The password and demo OTP are NOT production security.
-For a real production app, the next phase must add a secure backend/database, real email/SMS OTP provider, authenticated admin sessions, server-side file storage, image/video processing, and secure quote/invoice controls.
+IMPORTANT PRODUCTION LIMITATION
+--------------------------------
+This is a GitHub Pages front-end build. LocalStorage is used for the prototype's
+Admin settings, media, activity and enquiries. Therefore a customer on a different
+phone/browser will NOT share the same LocalStorage data.
 
-Prototype admin password: Admin@123
-Demo OTP: 123456
+For a real production business app, connect a secure backend/database for:
+1. Server-side authentication
+2. Truly private Admin contact numbers
+3. Shared media storage
+4. Cross-device customer enquiries
+5. Real-time Admin notifications / push notifications
+6. Secure customer accounts and moderation
 
-To run:
-1. Host these files on HTTPS (GitHub Pages can host the front-end).
-2. Open the site.
-3. Menu → Admin Login.
-4. Upload media from Admin → Media.
+The customer UI does not print the configured phone numbers; it shows only Call
+and WhatsApp buttons. However, because GitHub Pages is static, a technically
+skilled person can inspect front-end code/storage. Do not treat this build as a
+security boundary until a backend is connected.
+
+Prototype Admin password: Admin@123

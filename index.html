@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0b1220">
-<meta name="description" content="NISHAD ENTERPRISES — Electrical, Plumbing & Marine Services">
+<meta name="theme-color" content="#07101e">
+<meta name="description" content="NISHAD ENTERPRISES — Professional Electrical, Plumbing, Home Renovation & Marine Services">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icons/icon.svg">
 <link rel="stylesheet" href="style.css">
@@ -14,21 +14,32 @@
 <div id="app">
 <header class="topbar">
   <div class="brand" onclick="showCustomer()">
-    <div class="brandmark">N</div>
+    <div class="brandmark"><span>NE</span></div>
     <div><b>NISHAD</b><span>ENTERPRISES</span></div>
   </div>
-  <div class="topActions"><button class="adminTop" onclick="openAdmin()">🔐 Admin</button><button class="iconbtn" onclick="toggleMenu()" aria-label="Open menu">☰</button></div>
+  <div class="topActions">
+    <button class="adminTop" onclick="openAdmin()">🔐 Admin</button>
+    <button class="iconbtn" onclick="toggleMenu()" aria-label="Open menu">☰</button>
+  </div>
 </header>
 
 <main id="customerView">
   <section class="hero">
     <div class="eyebrow">PROFESSIONAL • RELIABLE • ON TIME</div>
-    <h1>Electrical, Plumbing &<br><em>Marine Support</em></h1>
-    <p>Professional technical services for homes, businesses and vessels.</p>
+    <h1>Electrical, Plumbing,<br><em>Renovation & Marine</em></h1>
+    <p>Professional technical support for homes, businesses and vessels — from repair work to complete renovation projects.</p>
     <div class="actions">
       <button class="primary" onclick="callBusiness()">☎ Call</button>
-      <button class="secondary" onclick="whatsappBusiness()">WhatsApp</button>
+      <button class="secondary" onclick="whatsappBusiness()">💬 WhatsApp</button>
+      <button class="ghost" onclick="openEnquiry()">📝 Get Quote</button>
     </div>
+  </section>
+
+  <section class="trustStrip">
+    <div><b>01</b><span>Electrical</span></div>
+    <div><b>02</b><span>Plumbing</span></div>
+    <div><b>03</b><span>Renovation</span></div>
+    <div><b>04</b><span>Marine</span></div>
   </section>
 
   <section class="section">
@@ -36,17 +47,29 @@
     <div id="serviceGrid" class="grid"></div>
   </section>
 
-  <section class="section">
-    <div class="sectionhead"><div><small>RECENT WORK</small><h2>Photos & Videos</h2></div></div>
+  <section class="section mediaSection">
+    <div class="sectionhead"><div><small>OUR WORK</small><h2>Photos & Videos</h2></div><span class="pill" id="mediaCountLabel">0 posts</span></div>
     <div id="mediaGrid" class="mediaGrid"></div>
     <p id="noMedia" class="empty">Our latest work will appear here.</p>
   </section>
 
-  <section class="adminAccess"><div><small>AUTHORIZED ACCESS</small><h2>Admin Control</h2><p>For authorized NISHAD ENTERPRISES administrators only.</p></div><button class="secondary" onclick="openAdmin()">🔐 Admin Login</button></section>
+  <section class="section enquiryCard">
+    <div>
+      <small>FAST CUSTOMER ENQUIRY</small>
+      <h2>Tell us what you need.</h2>
+      <p class="muted">Send your requirement and the Admin can review it from the Admin panel.</p>
+    </div>
+    <button class="primary" onclick="openEnquiry()">Send Enquiry</button>
+  </section>
+
+  <section class="adminAccess">
+    <div><small>AUTHORIZED ACCESS</small><h2>Admin Control Center</h2><p>Manage contact numbers, work media, enquiries and customer activity.</p></div>
+    <button class="secondary" onclick="openAdmin()">🔐 Admin Login</button>
+  </section>
 
   <section class="cta">
-    <div><small>NEED A PROFESSIONAL?</small><h2>Let's discuss your work.</h2><p>Call or WhatsApp us for an enquiry.</p></div>
-    <div class="actions"><button class="primary" onclick="callBusiness()">☎ Call</button><button class="secondary" onclick="whatsappBusiness()">WhatsApp</button></div>
+    <div><small>NEED A PROFESSIONAL?</small><h2>Let's discuss your work.</h2><p>Call, WhatsApp or send an enquiry.</p></div>
+    <div class="actions"><button class="primary" onclick="callBusiness()">☎ Call</button><button class="secondary" onclick="whatsappBusiness()">💬 WhatsApp</button></div>
   </section>
 </main>
 
@@ -56,18 +79,28 @@
     <button class="tab active" data-tab="dashboard">Dashboard</button>
     <button class="tab" data-tab="media">Media</button>
     <button class="tab" data-tab="services">Services</button>
-    <button class="tab" data-tab="quotes">Quotes</button>
+    <button class="tab" data-tab="enquiries">Enquiries <span id="enquiryBadge" class="badge hidden">0</span></button>
     <button class="tab" data-tab="settings">Settings</button>
   </div>
 
   <section id="dashboard" class="panel tabpanel">
-    <div class="statgrid"><div class="stat"><b id="mediaCount">0</b><span>Media items</span></div><div class="stat"><b id="serviceCount">0</b><span>Services</span></div><div class="stat"><b id="quoteCount">0</b><span>Quotes</span></div></div>
-    <div class="notice"><b>Customer protection is ON</b><p>Customers can view approved content and contact the business. Uploads, quotes, settings and admin controls stay inside this panel.</p></div>
+    <div class="statgrid">
+      <div class="stat"><b id="mediaCount">0</b><span>Media posts</span></div>
+      <div class="stat"><b id="serviceCount">0</b><span>Services</span></div>
+      <div class="stat"><b id="enquiryCount">0</b><span>Enquiries</span></div>
+      <div class="stat"><b id="activityCount">0</b><span>Customer activity</span></div>
+    </div>
+    <div class="notice"><b>🔔 Customer activity notifications</b><p id="notificationSummary">No new customer activity.</p></div>
+    <div class="settingCard">
+      <h3>Contact status</h3>
+      <p class="muted">Customers see only Call and WhatsApp buttons. The configured numbers are not printed on customer screens.</p>
+      <button class="secondary" onclick="switchTab('settings')">Manage contact numbers</button>
+    </div>
   </section>
 
   <section id="media" class="panel tabpanel hidden">
     <h2>Media Library</h2>
-    <p class="muted">Add work photos or videos. They are stored in this browser for this prototype.</p>
+    <p class="muted">Add professional work photos or videos. In this version, media is stored in this browser; a shared production media server is required for all customers to see uploads across devices.</p>
     <input id="mediaInput" type="file" accept="image/*,video/*" multiple>
     <div id="adminMedia" class="adminList"></div>
   </section>
@@ -77,23 +110,17 @@
     <div id="adminServices" class="adminList"></div>
   </section>
 
-  <section id="quotes" class="panel tabpanel hidden">
-    <h2>Create Customer Quote</h2>
-    <div class="formgrid">
-      <input id="qCustomer" placeholder="Customer name">
-      <input id="qService" placeholder="Service">
-      <input id="qAmount" type="number" placeholder="Amount (₹)">
-      <textarea id="qNotes" placeholder="Work details / notes"></textarea>
-    </div>
-    <button class="primary" onclick="createQuote()">Create Quote</button>
-    <div id="quoteList" class="adminList"></div>
+  <section id="enquiries" class="panel tabpanel hidden">
+    <h2>Customer Enquiries</h2>
+    <p class="muted">New enquiries are shown here and create an in-app Admin notification on this browser.</p>
+    <div id="enquiryList" class="adminList"></div>
   </section>
 
   <section id="settings" class="panel tabpanel hidden">
     <h2>Admin Settings</h2>
     <div class="settingCard">
-      <label>Business mobile 1 (hidden from customers)<input id="phone1" inputmode="tel"></label>
-      <label>Business mobile 2 (hidden from customers)<input id="phone2" inputmode="tel"></label>
+      <label>Business mobile 1 — hidden from customers<input id="phone1" inputmode="tel"></label>
+      <label>Business mobile 2 — hidden from customers<input id="phone2" inputmode="tel"></label>
       <button class="primary" onclick="savePhones()">Save numbers</button>
     </div>
     <div class="settingCard">
@@ -102,9 +129,13 @@
       <button class="secondary" onclick="changePassword()">Change password</button>
     </div>
     <div class="settingCard">
-      <h3>OTP verification</h3>
-      <p class="muted">Email/mobile OTP can be connected to a real authentication provider in the production backend.</p>
-      <button class="secondary" onclick="showOtp()">Start verification</button>
+      <h3>Notifications</h3>
+      <p class="muted">Browser notifications are available when permission is granted. Cross-device instant alerts require a production backend/notification service.</p>
+      <button class="secondary" onclick="enableNotifications()">🔔 Enable browser notifications</button>
+    </div>
+    <div class="settingCard warning">
+      <h3>Production security note</h3>
+      <p class="muted">This GitHub Pages build is a front-end prototype. For true server-side secret phone storage, authentication, shared media and cross-device notifications, connect a secure backend before public production use.</p>
     </div>
   </section>
 </main>
@@ -121,19 +152,20 @@
   <small>SECURE ADMIN ACCESS</small><h2>Admin Login</h2>
   <input id="loginPass" type="password" placeholder="Admin password" autocomplete="current-password">
   <button class="primary full" onclick="login()">Continue</button>
-  <p class="muted">Default prototype password: <b>Admin@123</b></p>
+  <p class="muted">Prototype default password: <b>Admin@123</b></p>
  </div>
 </div>
 
-<div id="otpModal" class="modal hidden">
+<div id="enquiryModal" class="modal hidden">
  <div class="modalbox">
-  <button class="close" onclick="closeModal('otpModal')">×</button>
-  <small>VERIFICATION</small><h2>OTP Verification</h2>
-  <input id="otpTarget" placeholder="Email or mobile number">
-  <button class="primary full" onclick="sendDemoOtp()">Send OTP</button>
-  <input id="otpCode" placeholder="Enter OTP" inputmode="numeric">
-  <button class="secondary full" onclick="verifyDemoOtp()">Verify</button>
-  <p id="otpMsg" class="muted"></p>
+  <button class="close" onclick="closeModal('enquiryModal')">×</button>
+  <small>CUSTOMER ENQUIRY</small><h2>Get a Quote</h2>
+  <input id="eName" placeholder="Your name">
+  <input id="ePhone" inputmode="tel" placeholder="Your mobile number">
+  <select id="eService"><option value="">Select service</option></select>
+  <textarea id="eMessage" placeholder="Tell us about your work"></textarea>
+  <button class="primary full" onclick="submitEnquiry()">Send Enquiry</button>
+  <p class="muted">Your message will appear in the Admin enquiry panel on this device.</p>
  </div>
 </div>
 
