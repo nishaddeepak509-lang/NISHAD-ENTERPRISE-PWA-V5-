@@ -1,10 +1,15 @@
 {
-  "name":"NISHAD ENTERPRISES",
-  "short_name":"NISHAD",
-  "start_url":"./",
-  "display":"standalone",
-  "background_color":"#07101e",
-  "theme_color":"#07101e",
-  "description":"Professional Electrical, Plumbing, Home Renovation & Marine Services",
-  "icons":[{"src":"icons/icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+  "name": "NISHAD ENTERPRISES V5 Professional",
+  "short_name": "NISHAD V5",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#07152a",
+  "background_color": "#07152a",
+  "icons": [
+    {
+      "src": "assets/ne-logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
 }
